@@ -31,7 +31,7 @@ class Downloader:
         else:
             print("Unable to download the file.")
 
-    # Download single GitHub file from repository
+    # Download single GitHub file from repository ()
     def get_gitfile(url, flag='', dir = os.getcwd()):
         url = url.replace('blob','raw')
         response = requests.get(url)

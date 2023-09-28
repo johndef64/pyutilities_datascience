@@ -59,3 +59,66 @@ class Downloader:
             print(f"ZIP file '{zip_file_name}' extracted to '{extracted_folder_name}' successfully.")
         else:
             print("Failed to download the ZIP file.")
+
+import glob
+import pandas as pd
+
+class File:
+    # Check files in folder (with extension)
+    def display_file(ext, contains='', path=os.getcwd()):
+        file_pattern = os.path.join(path, "*."+ext)
+        files = glob.glob(file_pattern)
+        files_name = []
+        for file in files:
+            file_name = os.path.basename(file)
+            files_name.append(file_name)
+
+        print('Available .'+ext+' files:')
+        files_df = pd.Series(files_name)
+        file = files_df[files_df.str.contains(contains)]
+        print(file)
+
+    def display_subfolders(folder_path=os.getcwd()):
+        subfolders = [f.name for f in os.scandir(folder_path) if f.is_dir()]
+        print("Subfolders in", folder_path, ":")
+        for subfolder in subfolders:
+            print(subfolder)
+
+    def get_subfolders(folder_path=os.getcwd()):
+        subfolders = [f.name for f in os.scandir(folder_path) if f.is_dir()]
+        return subfolders
+
+    def get_files(ext, contains='', path=os.getcwd()):
+        file_pattern = os.path.join(path, "*."+ext)
+        files = glob.glob(file_pattern)
+        files_name = []
+        for file in files:
+            file_name = os.path.basename(file)
+            files_name.append(file_name)
+        filtered_file = [item for item in files_name if isinstance(item, str) and contains in item]
+        return filtered_file
+
+    def get_files_pd(ext, contains='', path=os.getcwd()):
+        # Create a file path pattern to match 'ext' files
+        file_pattern = os.path.join(path, "*."+ext)
+        # Use glob to get a list of file paths matching the pattern
+        files = glob.glob(file_pattern)
+        files_name = []
+        # Get the list of 'ext' files
+        for file in files:
+            file_name = os.path.basename(file)
+            files_name.append(file_name)
+        files_sr = pd.Series(files_name)
+        filtered_file = files_sr[files_sr.str.contains(contains)]
+        return pd.Series(filtered_file)
+
+    def delete_file(filename, path=os.getcwd()):
+        try:
+            os.remove(os.path.join(path, filename))
+            print(f"File {filename} deleted successfully.")
+        except FileNotFoundError:
+            print(f"File {filename} not found.")
+        except PermissionError:
+            print(f"Permission denied.")
+        except Exception as e:
+            print(f"Unable to delete file {filename}. Error: {str(e)}")

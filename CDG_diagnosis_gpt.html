@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Genetic Diagnosis Report</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+        .section-title {
+            margin-top: 0;
+        }
+        .report-section {
+            background-color: #E0FFFF;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>Genetic Diagnosis Report</h1>
+<div class="report-section">
+    <h2 class="section-title">Patient Information</h2>
+    <hr>
+    <p>
+        Name: Sarah Smith<br>
+        Gender: Female<br>
+        Date of Birth: 04/15/2010<br>
+        Clinical History: Global developmental delay, failure to thrive, hepatomegaly
+    </p>
+</div>
+
+<div class="report-section">
+    <h2 class="section-title">Methods and Testing Strategy</h2>
+    <hr>
+    <p>
+        Testing Method: Next-Generation Sequencing (NGS) targeted gene panel<br>
+        Laboratory Techniques: DNA extraction, Library preparation, NGS sequencing<br>
+        Genes Analyzed: CDG-associated genes
+    </p>
+</div>
+
+<div class="report-section">
+    <h2 class="section-title">Results</h2>
+    <hr>
+    <table>
+        <tr>
+            <th>Variant ID</th>
+            <th>Gene</th>
+            <th>Variant Type</th>
+            <th>Pathogenicity</th>
+            <th>Allele Frequency (Populations)</th>
+            <th>ClinVar Accession</th>
+        </tr>
+        <tr>
+            <td>V1</td>
+            <td>PMM2</td>
+            <td>Missense</td>
+            <td>Pathogenic</td>
+            <td>0.001% (GnomAD)</td>
+            <td>VCV000123456</td>
+        </tr>
+        <tr>
+            <td>V2</td>
+            <td>MPI</td>
+            <td>Frameshift</td>
+            <td>Pathogenic</td>
+            <td>-</td>
+            <td>VCV000654321</td>
+        </tr>
+        <tr>
+            <td>V3</td>
+            <td>ALG6</td>
+            <td>Splice</td>
+            <td>Likely Path.</td>
+            <td>0.001% (GnomAD)</td>
+            <td>VCV000987654</td>
+        </tr>
+        <tr>
+            <td>V4</td>
+            <td>SRD5A3</td>
+            <td>Missense</td>
+            <td>Benign</td>
+            <td>0.01% (GnomAD)</td>
+            <td>VCV000246813</td>
+        </tr>
+    </table>
+</div>
+
+<div class="report-section">
+    <h2 class="section-title">Interpretation</h2>
+    <hr>
+    <p>
+        Clinical Significance: The patient carries pathogenic variants in PMM2, MPI, and a likely pathogenic variant in ALG6. These genes are associated with Congenital Disorders of Glycosylation (CDG), specifically CDG-Ia (PMM2-CDG), CDG-Ib (MPI-CDG), and CDG-Ic (ALG6-CDG). The presence of these variants is strongly correlated with the patient's clinical phenotype of global developmental delay, failure to thrive, and hepatomegaly.<br>
+        Variant Pathogenicity: The identified variants have been classified as pathogenic/likely pathogenic based on their known association with CDG, functional impact on protein function, and relevant reports in the scientific literature. The benign variant in SRD5A3 is considered irrelevant to the patient's CDG diagnosis.<br>
+        Relevance to Patient: The identified variants are the likely underlying genetic causes of the patient's CDG, providing a molecular diagnosis and explaining the observed clinical symptoms.
+    </p>
+</div>
+
+<div class="report-section">
+    <h2 class="section-title">Recommendations</h2>
+    <hr>
+    <p>
+        Clinical Management: This genetic diagnosis can guide treatment and management strategies specific to CDG. Referral to a metabolic specialist or pediatric geneticist is recommended for comprehensive evaluation, counseling, and coordination of appropriate medical care.<br>
+        Genetic Counseling: The patient and their family should receive genetic counseling to understand the inheritance pattern of CDG, the implications for family members, and potential reproductive options.<br>
+        Long-Term Monitoring: Regular follow-up visits and monitoring of the patient's growth, development, liver function, and other relevant clinical parameters are advised to optimize their overall care and address potential related complications.<br>
+        Research Opportunities: The findings contribute to ongoing research in CDG and advance our understanding of the genetic basis of the disorder, potentially aiding in the development of targeted therapies and future treatment options.
+    </p>
+</div>
+
+<p><em>This example report provides a tabular format, including detailed information for each variant, such as variant ID, gene, variant type, pathogenicity classification, allele frequency in the general population, and ClinVar accession numbers. The report also covers sections for patient information, testing methods, interpretation, and recommendations, addressing key elements necessary for a comprehensive genetic diagnosis report for Congenital Disorders of Glycosylation (CDG).</em></p>
+</body>
+</html>

@@ -140,6 +140,10 @@ def pd_choose(my_list):
     i = int(input('choose index:\n'+str(pd.Series(my_list))))
     return my_list[i]
 
+def pd_choose_col(my_df):
+    i = int(input('choose column:\n'+str(pd.Series(my_df.columns))))
+    return my_df.columns[i]
+
 # Df merger
 def pd_merge_base(df1, df2, column1, column2, how= ''):
     merged_df = pd.merge(df1, df2, left_on=column1, right_on=column2, how=how)

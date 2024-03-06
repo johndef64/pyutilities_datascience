@@ -1,10 +1,43 @@
+import os
+import re
+import ast
+import importlib
+import subprocess
+
+def simple_bool(message):
+    choose = input(message+" (y/n): ").lower()
+    your_bool = choose in ["y", "yes","yea","sure"]
+    return your_bool
+
+def check_and_install_requirements(requirements):
+    missing_requirements = []
+    for module in requirements:
+        try:
+            # Check if the module is already installed
+            importlib.import_module(module)
+        except ImportError:
+            missing_requirements.append(module)
+    if len(missing_requirements) == 0:
+        pass
+    else:
+        x = simple_bool(str(missing_requirements)+" are missing.\nWould you like to install them all?")
+        if x:
+            for module in missing_requirements:
+                subprocess.check_call(["pip", "install", module])
+                print(f"{module}' was installed correctly.")
+        else:
+            exit()
+
+
 #================================================================================================
 # Dowloaders
 
-import os
+check_and_install_requirements(['gdown'])
+
 import io
 import requests
 import zipfile
+import gdown
 
 
 # git clone
@@ -59,6 +92,40 @@ def get_gitfile(url,
     else:
         print("Unable to download the file.")
 
+def get_and_extract(file, dir = os.getcwd(), ext = '.zip'):
+    url='https://zenodo.org/record/8205724/files/'+file+'.zip?download=1'
+    zip_file_name = file+ext
+    extracted_folder_name = dir
+    # Download the ZIP file
+    response = requests.get(url)
+    if response.status_code == 200:
+        # Extract the ZIP contents
+        with io.BytesIO(response.content) as zip_buffer:
+            with zipfile.ZipFile(zip_buffer, 'r') as zip_ref:
+                zip_ref.extractall(extracted_folder_name)
+        print(f"ZIP file '{zip_file_name}' extracted to '{extracted_folder_name}' successfully.")
+    else:
+        print("Failed to download the ZIP file.")
+
+
+def get_gdown(url, output=None):
+    """
+    This function downloads a file from the internet using gdown.
+    Args:
+    url (str): The URL of the file you want to download.
+    output (str, optional): The path where the downloaded file will be saved.
+                            If not provided, the file will be saved in the current directory with its original name.
+    """
+    gdown.download(url, output, quiet = False)
+
+def get_from_gdrive(gdrive_id, output):
+    url_template = 'https://drive.google.com/uc?id={}'
+    url = url_template.format(gdrive_id)
+
+    gdown.download(url, output, quiet=False)
+
+# Usage: download_from_gdrive('your Google Drive file ID', 'output file name')
+# please replace 'your Google Drive file ID' and 'output file name' with real google drive id and local name for downloaded file.
 
 # Download and Exrtact zip file from Zenodo
 def get_and_extract_zenodo(file,
@@ -81,8 +148,8 @@ def get_and_extract_zenodo(file,
 
 #================================================================================================
 # File
+check_and_install_requirements(['pandas'])
 
-import os
 import glob
 import pandas as pd
 
@@ -159,11 +226,6 @@ def file_delete(filename,
 
 #================================================================================================
 # Data Analysis
-
-import pandas as pd
-import re
-import ast
-
 
 def pd_choose(my_list):
     i = int(input('choose index:\n'+str(pd.Series(my_list))))
